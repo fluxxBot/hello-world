@@ -24,14 +24,6 @@ pipelines:
           inputResources:
             - name: {{ .Values.namePrefix }}_repo
         {{ end }}
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "14.19.1"
         execution:
           onStart:
             - echo "onStart can be used to do some setup or initialization of your dependencies to prepare for the execution."
@@ -60,13 +52,6 @@ pipelines:
               values:
                 - "false"
                 - "true"
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "14.19.1"
         execution:
           onStart:
             - if [ ${forceFail} == "true" ]; then exit 1; fi
@@ -84,13 +69,6 @@ pipelines:
         configuration:
           inputSteps:
             - name: first
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "14.19.1"
         execution:
           onStart:
             - echo "This step will save a value to a run variable."
@@ -102,18 +80,12 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - name: variable_selection
-              status: 
+            - name: add_run_variable
+              status:
                 - failure
+            - name: variable_selection
           outputResources:
             - name: {{ .Values.namePrefix }}_bag
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "14.19.1"
         execution:
           onStart:
             - echo "Printing the run variable 'step_info' from previous step"
@@ -129,13 +101,6 @@ pipelines:
         configuration:
           inputResources:
             - name: {{ .Values.namePrefix }}_bag
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - "14.19.1"
         execution:
           onExecute:
             - echo "printing resource details"
