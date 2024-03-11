@@ -67,6 +67,7 @@ pipelines:
       - name: add_run_variable
         type: Bash
         configuration:
+          allowFailure: true
           inputSteps:
             - name: first
         execution:
