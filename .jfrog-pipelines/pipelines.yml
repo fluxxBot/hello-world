@@ -96,12 +96,15 @@ pipelines:
             - echo "This step will save a value to a run variable."
           onExecute:
             - add_run_variables step_info="runNumber $run_number, step_name $step_name, pipeline_name $pipeline_name"
+            - exit 1
 
       - name: write_to_resource
         type: Bash
         configuration:
           inputSteps:
             - name: variable_selection
+              status: 
+                - failure
           outputResources:
             - name: {{ .Values.namePrefix }}_bag
           runtime:
