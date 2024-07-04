@@ -1,3 +1,7 @@
+valuesFilePath: ./values.yml
+include:
+  template: jfrog/HelloWorld/1.0.0
+
 resources:
   - name: {{ .Values.namePrefix }}_bag
     type: PropertyBag
