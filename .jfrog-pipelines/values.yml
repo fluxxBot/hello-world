@@ -1,6 +1,6 @@
 # This string will prefix the "HelloWorld" resource and pipeline.
 # it will allow you to add the pipeline multiple times with unique names
-namePrefix: intro
+namePrefix: intro_same_affinity_
 
 ##
 # The following section is optional. If you have a repository you'd like to
