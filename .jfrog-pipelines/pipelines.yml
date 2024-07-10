@@ -23,11 +23,8 @@ pipelines:
     steps:
       - name: first
         type: Bash
-        {{ if .Values.repo.integrationName }}
         configuration:
-          inputResources:
-            - name: {{ .Values.namePrefix }}_repo
-        {{ end }}
+          affinityGroup: test
         execution:
           onStart:
             - echo "onStart can be used to do some setup or initialization of your dependencies to prepare for the execution."
@@ -47,6 +44,7 @@ pipelines:
       - name: variable_selection
         type: Bash
         configuration:
+          affinityGroup: test1
           inputSteps:
             - name: first
           environmentVariables:
@@ -71,6 +69,7 @@ pipelines:
       - name: add_run_variable
         type: Bash
         configuration:
+          affinityGroup: test1
           inputSteps:
             - name: first
         execution:
@@ -82,6 +81,7 @@ pipelines:
       - name: write_to_resource
         type: Bash
         configuration:
+          affinityGroup: test
           inputSteps:
             - name: add_run_variable
             - name: variable_selection
@@ -100,6 +100,7 @@ pipelines:
       - name: read_from_resource
         type: Bash
         configuration:
+          affinityGroup: test
           inputResources:
             - name: {{ .Values.namePrefix }}_bag
         execution:
