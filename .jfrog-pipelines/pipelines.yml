@@ -5,4 +5,4 @@ pipelines:
         type: PowerShell
         execution:
           onExecute:
-            - Push-Location /
+            - Write-Output 'Hello, World!'
