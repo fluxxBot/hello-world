@@ -1,6 +1,8 @@
 pipelines:
-  - name: build
-    type: PowerShell
-    execution:
-      onExecute:
-        - Push-Location /
+  - name: powershell_test
+    steps:
+      - name: build
+        type: PowerShell
+        execution:
+          onExecute:
+            - Push-Location /
