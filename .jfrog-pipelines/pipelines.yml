@@ -1,5 +1,6 @@
-- name: build
-  type: PowerShell
-  execution:
-    onExecute:
-      - Push-Location /
+pipelines:
+  - name: build
+    type: PowerShell
+    execution:
+      onExecute:
+        - Push-Location /
