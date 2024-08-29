@@ -4,6 +4,7 @@ pipelines:
       - name: first_art
         type: Bash
         configuration:
+          jfrogCliVersion: 2
           integrations:
             - name: int_artifactory
         execution:
